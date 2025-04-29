@@ -1,5 +1,8 @@
+package BinaryTrees;
 import java.util.ArrayList;
 import java.util.List;
+
+import Node;
 
 class Node{
     int data;
@@ -11,19 +14,20 @@ class Node{
         right = null;
     }
 }
-class inOrderTraversalRecursive{
-    public static void recursion(Node root, List<Integer> li){
+class preOrderTraversal{ 
+     static void recursion(Node root, List<Integer> li){
         if(root == null){
             return;
         }
-        recursion(root.left, li);
         li.add(root.data);
-        recursion(root.right, li);
-    }
-    public static List<Integer> inOrderTraversal(Node root){
+        recursion(root.left, li);
+        recursion(root.right, li);  
+    }  
+    static List<Integer> preOrder(Node root){
         List<Integer> li = new ArrayList<>();
         recursion(root, li);
         return li;
+        
     }
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -32,9 +36,9 @@ class inOrderTraversalRecursive{
         root.left.left = new Node(4);
         root.left.right = new Node(5);
 
-        List<Integer> result = inOrderTraversal(root);
-        System.out.print("InOrder traversal : ");
-        for(int val : result){
+        List<Integer> result = preOrder(root);
+        System.out.println("PreOrder traversal is: ");
+        for(int val: result){
             System.out.print(val + " ");
         }
         System.out.println();
